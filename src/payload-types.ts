@@ -2357,6 +2357,81 @@ export interface Auth {
 }
 
 
+export interface RichTextBlock {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    color?: string | null;
+    image?: { url?: string | null } | number | null;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'rich-text';
+}
+
+export interface EditorialQuoteBlock {
+  quote: string;
+  attribution?: string | null;
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    color?: string | null;
+    image?: { url?: string | null } | number | null;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'editorial-quote';
+}
+
+export interface CTABannerBlock {
+  heading: string;
+  body?: string | null;
+  ctaText: string;
+  ctaUrl: string;
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    color?: string | null;
+    image?: { url?: string | null } | number | null;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta-banner';
+}
+
+export interface SpacerDividerBlock {
+  type?: ('spacer' | 'divider') | null;
+  size?: ('sm' | 'md' | 'lg') | null;
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    color?: string | null;
+    image?: { url?: string | null } | number | null;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'spacer-divider';
+}
+
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}
 }

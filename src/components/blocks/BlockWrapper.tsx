@@ -4,7 +4,7 @@ import React from 'react'
 type BackgroundData = {
   type?: 'none' | 'color' | 'image' | null
   color?: string | null
-  image?: { url?: string | null } | null
+  image?: { url?: string | null } | number | null
 } | null | undefined
 
 type Props = {
@@ -27,7 +27,7 @@ export function BlockWrapper({ children, anchor, padding, background, className 
   const style: React.CSSProperties = {}
   if (background?.type === 'color' && background.color) {
     style.backgroundColor = background.color
-  } else if (background?.type === 'image' && background.image?.url) {
+  } else if (background?.type === 'image' && typeof background.image === 'object' && background.image?.url) {
     style.backgroundImage = `url(${background.image.url})`
     style.backgroundSize = 'cover'
     style.backgroundPosition = 'center'
