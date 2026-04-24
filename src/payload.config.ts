@@ -1,6 +1,8 @@
 import { buildConfig } from 'payload'
+import { seoPlugin } from '@payloadcms/plugin-seo'
 import { Header } from './globals/Header.ts'
 import { Footer } from './globals/Footer.ts'
+import { Settings } from './globals/Settings.ts'
 import { Users } from './collections/Users.ts'
 import { Media } from './collections/Media.ts'
 import { Products } from './collections/Products.ts'
@@ -36,7 +38,7 @@ export default buildConfig({
     push: process.env.NODE_ENV === 'development',
   }),
   collections: [Users, Media, Products, Customers, Orders, Pages, Posts, PressMentions, NewsletterSubscribers, ContactSubmissions],
-  globals: [Header, Footer],
+  globals: [Header, Footer, Settings],
   plugins: [
     vercelBlobStorage({
       collections: {
@@ -44,7 +46,12 @@ export default buildConfig({
       },
       token: process.env.BLOB_READ_WRITE_TOKEN!,
     }),
-    // seoPlugin registered in Task 18 after pages/posts/products collections exist
+    seoPlugin({
+      collections: ['pages', 'posts', 'products'],
+      uploadsCollection: 'media',
+      generateTitle: ({ doc }) => `${(doc as { title?: string }).title ?? ''} — Classical Waves`,
+      generateDescription: ({ doc }) => (doc as { excerpt?: string }).excerpt ?? '',
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET!,
   typescript: {
