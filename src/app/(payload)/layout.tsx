@@ -6,7 +6,7 @@ import {
   RootLayout,
 } from '@payloadcms/next/layouts'
 import React from 'react'
-import { importMap } from './admin/[[...segments]]/importMap.js'
+import { importMap } from './admin/importMap.js'
 import './custom.scss'
 
 const serverFunction: ServerFunctionClient = async function (args) {
