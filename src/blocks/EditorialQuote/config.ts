@@ -1,6 +1,6 @@
 // src/blocks/EditorialQuote/config.ts
 import type { Block } from 'payload'
-import { blockFields } from '@/blocks/shared'
+import { blockFields } from '../shared.ts'
 
 export const EditorialQuoteBlock: Block = {
   slug: 'editorial-quote',

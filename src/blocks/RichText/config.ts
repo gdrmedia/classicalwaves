@@ -1,7 +1,7 @@
 // src/blocks/RichText/config.ts
 import type { Block } from 'payload'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { blockFields } from '@/blocks/shared'
+import { blockFields } from '../shared.ts'
 
 export const RichTextBlock: Block = {
   slug: 'rich-text',

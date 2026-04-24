@@ -1,7 +1,7 @@
 // src/blocks/ImageTextSplit/config.ts
 import type { Block } from 'payload'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { blockFields } from '@/blocks/shared'
+import { blockFields } from '../shared.ts'
 
 export const ImageTextSplitBlock: Block = {
   slug: 'image-text-split',

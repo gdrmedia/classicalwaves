@@ -433,6 +433,410 @@ export interface Page {
    */
   slug: string;
   status: 'draft' | 'published';
+  blocks?:
+    | (
+        | {
+            image: number | Media;
+            heading: string;
+            subheading?: string | null;
+            ctaText?: string | null;
+            ctaUrl?: string | null;
+            overlayOpacity?: ('none' | 'light' | 'medium' | 'dark') | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero-header';
+          }
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'rich-text';
+          }
+        | {
+            image: number | Media;
+            imageSide?: ('left' | 'right') | null;
+            heading: string;
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            ctaText?: string | null;
+            ctaUrl?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image-text-split';
+          }
+        | {
+            columns?: ('2' | '3' | '4') | null;
+            images?:
+              | {
+                  image: number | Media;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image-grid';
+          }
+        | {
+            heading?: string | null;
+            /**
+             * Select 2–6 products to feature.
+             */
+            products?: (number | Product)[] | null;
+            layout?: ('grid' | 'carousel') | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featured-products';
+          }
+        | {
+            heading?: string | null;
+            images?:
+              | {
+                  image: number | Media;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            lightbox?: boolean | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'lookbook-gallery';
+          }
+        | {
+            quote: string;
+            attribution?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'editorial-quote';
+          }
+        | {
+            heading?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'press-strip';
+          }
+        | {
+            heading?: string | null;
+            testimonials?:
+              | {
+                  quote: string;
+                  author: string;
+                  location?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonial-slider';
+          }
+        | {
+            heading?: string | null;
+            items?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq-accordion';
+          }
+        | {
+            heading?: string | null;
+            body?: string | null;
+            buttonText?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'newsletter-signup';
+          }
+        | {
+            heading?: string | null;
+            body?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact-form';
+          }
+        | {
+            heading: string;
+            body?: string | null;
+            ctaText: string;
+            ctaUrl: string;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cta-banner';
+          }
+        | {
+            /**
+             * YouTube, Vimeo, or direct MP4 URL.
+             */
+            url: string;
+            caption?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video-embed';
+          }
+        | {
+            heading?: string | null;
+            cards?:
+              | {
+                  /**
+                   * e.g. "01"
+                   */
+                  number: string;
+                  heading: string;
+                  body: string;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'numbered-card-slider';
+          }
+        | {
+            type?: ('spacer' | 'divider') | null;
+            size?: ('sm' | 'md' | 'lg') | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'spacer-divider';
+          }
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -478,6 +882,273 @@ export interface Post {
         tag?: string | null;
         id?: string | null;
       }[]
+    | null;
+  /**
+   * Optional sections appended after the main content.
+   */
+  blocks?:
+    | (
+        | {
+            image: number | Media;
+            heading: string;
+            subheading?: string | null;
+            ctaText?: string | null;
+            ctaUrl?: string | null;
+            overlayOpacity?: ('none' | 'light' | 'medium' | 'dark') | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero-header';
+          }
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'rich-text';
+          }
+        | {
+            image: number | Media;
+            imageSide?: ('left' | 'right') | null;
+            heading: string;
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            ctaText?: string | null;
+            ctaUrl?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image-text-split';
+          }
+        | {
+            columns?: ('2' | '3' | '4') | null;
+            images?:
+              | {
+                  image: number | Media;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image-grid';
+          }
+        | {
+            heading?: string | null;
+            images?:
+              | {
+                  image: number | Media;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            lightbox?: boolean | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'lookbook-gallery';
+          }
+        | {
+            quote: string;
+            attribution?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'editorial-quote';
+          }
+        | {
+            heading?: string | null;
+            testimonials?:
+              | {
+                  quote: string;
+                  author: string;
+                  location?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonial-slider';
+          }
+        | {
+            heading: string;
+            body?: string | null;
+            ctaText: string;
+            ctaUrl: string;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cta-banner';
+          }
+        | {
+            /**
+             * YouTube, Vimeo, or direct MP4 URL.
+             */
+            url: string;
+            caption?: string | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video-embed';
+          }
+        | {
+            type?: ('spacer' | 'divider') | null;
+            size?: ('sm' | 'md' | 'lg') | null;
+            /**
+             * Optional ID for in-page links, e.g. "about-us".
+             */
+            anchor?: string | null;
+            padding?: ('sm' | 'md' | 'lg') | null;
+            background?: {
+              type?: ('none' | 'color' | 'image') | null;
+              /**
+               * CSS color value, e.g. #f5f0eb
+               */
+              color?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'spacer-divider';
+          }
+      )[]
     | null;
   meta?: {
     title?: string | null;
@@ -857,6 +1528,325 @@ export interface PagesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   status?: T;
+  blocks?:
+    | T
+    | {
+        'hero-header'?:
+          | T
+          | {
+              image?: T;
+              heading?: T;
+              subheading?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              overlayOpacity?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'rich-text'?:
+          | T
+          | {
+              content?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'image-text-split'?:
+          | T
+          | {
+              image?: T;
+              imageSide?: T;
+              heading?: T;
+              body?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'image-grid'?:
+          | T
+          | {
+              columns?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'featured-products'?:
+          | T
+          | {
+              heading?: T;
+              products?: T;
+              layout?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'lookbook-gallery'?:
+          | T
+          | {
+              heading?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              lightbox?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'editorial-quote'?:
+          | T
+          | {
+              quote?: T;
+              attribution?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'press-strip'?:
+          | T
+          | {
+              heading?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'testimonial-slider'?:
+          | T
+          | {
+              heading?: T;
+              testimonials?:
+                | T
+                | {
+                    quote?: T;
+                    author?: T;
+                    location?: T;
+                    id?: T;
+                  };
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'faq-accordion'?:
+          | T
+          | {
+              heading?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'newsletter-signup'?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              buttonText?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'contact-form'?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'cta-banner'?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'video-embed'?:
+          | T
+          | {
+              url?: T;
+              caption?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'numbered-card-slider'?:
+          | T
+          | {
+              heading?: T;
+              cards?:
+                | T
+                | {
+                    number?: T;
+                    heading?: T;
+                    body?: T;
+                    id?: T;
+                  };
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'spacer-divider'?:
+          | T
+          | {
+              type?: T;
+              size?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
   meta?:
     | T
     | {
@@ -886,6 +1876,209 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         tag?: T;
         id?: T;
+      };
+  blocks?:
+    | T
+    | {
+        'hero-header'?:
+          | T
+          | {
+              image?: T;
+              heading?: T;
+              subheading?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              overlayOpacity?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'rich-text'?:
+          | T
+          | {
+              content?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'image-text-split'?:
+          | T
+          | {
+              image?: T;
+              imageSide?: T;
+              heading?: T;
+              body?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'image-grid'?:
+          | T
+          | {
+              columns?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'lookbook-gallery'?:
+          | T
+          | {
+              heading?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              lightbox?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'editorial-quote'?:
+          | T
+          | {
+              quote?: T;
+              attribution?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'testimonial-slider'?:
+          | T
+          | {
+              heading?: T;
+              testimonials?:
+                | T
+                | {
+                    quote?: T;
+                    author?: T;
+                    location?: T;
+                    id?: T;
+                  };
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'cta-banner'?:
+          | T
+          | {
+              heading?: T;
+              body?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'video-embed'?:
+          | T
+          | {
+              url?: T;
+              caption?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'spacer-divider'?:
+          | T
+          | {
+              type?: T;
+              size?: T;
+              anchor?: T;
+              padding?: T;
+              background?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
