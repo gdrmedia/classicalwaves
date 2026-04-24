@@ -5,6 +5,10 @@ import { Products } from './collections/Products.ts'
 import { Customers } from './collections/Customers.ts'
 import { Orders } from './collections/Orders.ts'
 import { Pages } from './collections/Pages.ts'
+import { Posts } from './collections/Posts.ts'
+import { PressMentions } from './collections/PressMentions.ts'
+import { NewsletterSubscribers } from './collections/NewsletterSubscribers.ts'
+import { ContactSubmissions } from './collections/ContactSubmissions.ts'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
@@ -29,7 +33,7 @@ export default buildConfig({
     },
     push: process.env.NODE_ENV === 'development',
   }),
-  collections: [Users, Media, Products, Customers, Orders, Pages],
+  collections: [Users, Media, Products, Customers, Orders, Pages, Posts, PressMentions, NewsletterSubscribers, ContactSubmissions],
   globals: [],
   plugins: [
     vercelBlobStorage({
