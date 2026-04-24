@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Classical Waves
 
-## Getting Started
+Custom Next.js 16 + Payload 3.0 rebuild of classicalwaves.com.
 
-First, run the development server:
+## Local setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Install Node 20+ and `pnpm`.
+2. Copy `.env.example` to `.env` and fill in:
+   - `DATABASE_URL` — Neon pooled connection string
+   - `PAYLOAD_SECRET` — `openssl rand -hex 32`
+   - `BLOB_READ_WRITE_TOKEN` — Vercel Blob store token
+   - `PAYLOAD_PUBLIC_DRAFT_SECRET` — `openssl rand -hex 32`
+3. Install deps: `pnpm install`
+4. Boot dev: `pnpm dev`
+5. Admin at http://localhost:3000/admin (first login prompts to create an admin user).
+6. Seed DB: `pnpm seed` (after admin user created)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `pnpm dev` — Next + Payload dev server
+- `pnpm build` — production build
+- `pnpm seed` — idempotent DB seed (home/about pages, sample product, globals)
+- `pnpm generate:types` — regenerate `src/payload-types.ts`
+- `pnpm generate:importmap` — regenerate admin import map
+- `pnpm migrate:create <name>` — create a new DB migration
+- `pnpm migrate` — apply pending migrations (required in production)
+- `pnpm test` — run vitest
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack
 
-## Learn More
+- Next.js 16 (App Router)
+- Payload 3.0 CMS
+- Neon Postgres
+- Vercel Blob (media storage)
+- Stripe (commerce — wired in M3)
+- Resend (transactional email — wired in M3)
+- Tailwind CSS
 
-To learn more about Next.js, take a look at the following resources:
+## Milestones
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **M1 (current):** foundation + admin + data model ✅
+- **M2:** public site, CMS block library, content pages
+- **M3:** shop end-to-end (cart, Stripe Checkout, webhooks)
+- **M4:** customer accounts (signup/login, order history)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `docs/superpowers/specs/` for design spec and `docs/superpowers/plans/` for per-milestone plans.
