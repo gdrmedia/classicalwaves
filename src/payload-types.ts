@@ -72,6 +72,7 @@ export interface Config {
     media: Media;
     products: Product;
     customers: Customer;
+    orders: Order;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -83,6 +84,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     customers: CustomersSelect<false> | CustomersSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -336,6 +338,65 @@ export interface Customer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: number;
+  /**
+   * Generated on creation.
+   */
+  orderNumber: string;
+  customer: number | Customer;
+  status: 'pending' | 'paid' | 'fulfilled' | 'shipped' | 'delivered' | 'refunded' | 'cancelled';
+  items: {
+    product: number | Product;
+    /**
+     * Snapshot of the variant SKU purchased.
+     */
+    variantSku: string;
+    /**
+     * e.g. "Size M / Sand".
+     */
+    variantLabel: string;
+    quantity: number;
+    /**
+     * Price snapshot to preserve the order ledger.
+     */
+    priceAtPurchaseCents: number;
+    id?: string | null;
+  }[];
+  /**
+   * Sum of items.
+   */
+  subtotalCents: number;
+  shippingCents: number;
+  taxCents: number;
+  /**
+   * subtotal + shipping + tax.
+   */
+  totalCents: number;
+  shippingAddress: {
+    name: string;
+    line1: string;
+    line2?: string | null;
+    city: string;
+    state: string;
+    postalCode: string;
+    country: string;
+  };
+  stripePaymentIntentId?: string | null;
+  stripeCheckoutSessionId?: string | null;
+  trackingNumber?: string | null;
+  trackingUrl?: string | null;
+  /**
+   * Denormalized from customer for easy email lookup.
+   */
+  customerEmail: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -373,6 +434,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'customers';
         value: number | Customer;
+      } | null)
+    | ({
+        relationTo: 'orders';
+        value: number | Order;
       } | null);
   globalSlug?: string | null;
   user:
@@ -577,6 +642,47 @@ export interface CustomersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders_select".
+ */
+export interface OrdersSelect<T extends boolean = true> {
+  orderNumber?: T;
+  customer?: T;
+  status?: T;
+  items?:
+    | T
+    | {
+        product?: T;
+        variantSku?: T;
+        variantLabel?: T;
+        quantity?: T;
+        priceAtPurchaseCents?: T;
+        id?: T;
+      };
+  subtotalCents?: T;
+  shippingCents?: T;
+  taxCents?: T;
+  totalCents?: T;
+  shippingAddress?:
+    | T
+    | {
+        name?: T;
+        line1?: T;
+        line2?: T;
+        city?: T;
+        state?: T;
+        postalCode?: T;
+        country?: T;
+      };
+  stripePaymentIntentId?: T;
+  stripeCheckoutSessionId?: T;
+  trackingNumber?: T;
+  trackingUrl?: T;
+  customerEmail?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

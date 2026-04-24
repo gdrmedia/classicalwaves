@@ -1,0 +1,95 @@
+import type { CollectionConfig } from 'payload'
+
+export const Orders: CollectionConfig = {
+  slug: 'orders',
+  admin: {
+    useAsTitle: 'orderNumber',
+    defaultColumns: ['orderNumber', 'customer', 'totalCents', 'status', 'createdAt'],
+  },
+  access: {
+    create: ({ req: { user } }) => Boolean(user && user.collection === 'users'),
+    read: ({ req: { user } }) => Boolean(user && user.collection === 'users'),
+    update: ({ req: { user } }) => Boolean(user && user.collection === 'users'),
+    delete: () => false,
+  },
+  fields: [
+    {
+      name: 'orderNumber',
+      type: 'text',
+      required: true,
+      unique: true,
+      admin: { readOnly: true, description: 'Generated on creation.' },
+    },
+    {
+      name: 'customer',
+      type: 'relationship',
+      relationTo: 'customers',
+      required: true,
+    },
+    {
+      name: 'status',
+      type: 'select',
+      required: true,
+      defaultValue: 'pending',
+      options: [
+        { label: 'Pending', value: 'pending' },
+        { label: 'Paid', value: 'paid' },
+        { label: 'Fulfilled', value: 'fulfilled' },
+        { label: 'Shipped', value: 'shipped' },
+        { label: 'Delivered', value: 'delivered' },
+        { label: 'Refunded', value: 'refunded' },
+        { label: 'Cancelled', value: 'cancelled' },
+      ],
+    },
+    {
+      name: 'items',
+      type: 'array',
+      required: true,
+      minRows: 1,
+      fields: [
+        { name: 'product', type: 'relationship', relationTo: 'products', required: true },
+        { name: 'variantSku', type: 'text', required: true, admin: { description: 'Snapshot of the variant SKU purchased.' } },
+        { name: 'variantLabel', type: 'text', required: true, admin: { description: 'e.g. "Size M / Sand".' } },
+        { name: 'quantity', type: 'number', required: true, min: 1 },
+        { name: 'priceAtPurchaseCents', type: 'number', required: true, admin: { description: 'Price snapshot to preserve the order ledger.' } },
+      ],
+    },
+    {
+      name: 'subtotalCents',
+      type: 'number',
+      required: true,
+      admin: { description: 'Sum of items.' },
+    },
+    { name: 'shippingCents', type: 'number', required: true, defaultValue: 0 },
+    { name: 'taxCents', type: 'number', required: true, defaultValue: 0 },
+    {
+      name: 'totalCents',
+      type: 'number',
+      required: true,
+      admin: { description: 'subtotal + shipping + tax.' },
+    },
+    {
+      name: 'shippingAddress',
+      type: 'group',
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'line1', type: 'text', required: true },
+        { name: 'line2', type: 'text' },
+        { name: 'city', type: 'text', required: true },
+        { name: 'state', type: 'text', required: true },
+        { name: 'postalCode', type: 'text', required: true },
+        { name: 'country', type: 'text', required: true, defaultValue: 'US' },
+      ],
+    },
+    { name: 'stripePaymentIntentId', type: 'text', unique: true, admin: { readOnly: true } },
+    { name: 'stripeCheckoutSessionId', type: 'text', admin: { readOnly: true } },
+    { name: 'trackingNumber', type: 'text' },
+    { name: 'trackingUrl', type: 'text' },
+    {
+      name: 'customerEmail',
+      type: 'email',
+      required: true,
+      admin: { description: 'Denormalized from customer for easy email lookup.' },
+    },
+  ],
+}
