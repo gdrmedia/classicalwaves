@@ -1,4 +1,5 @@
 import { buildConfig } from 'payload'
+import { Header } from './globals/Header.ts'
 import { Users } from './collections/Users.ts'
 import { Media } from './collections/Media.ts'
 import { Products } from './collections/Products.ts'
@@ -34,7 +35,7 @@ export default buildConfig({
     push: process.env.NODE_ENV === 'development',
   }),
   collections: [Users, Media, Products, Customers, Orders, Pages, Posts, PressMentions, NewsletterSubscribers, ContactSubmissions],
-  globals: [],
+  globals: [Header],
   plugins: [
     vercelBlobStorage({
       collections: {
