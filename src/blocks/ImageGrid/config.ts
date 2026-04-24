@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const ImageGridBlock: Block = {
   slug: 'image-grid',
+  interfaceName: 'ImageGridBlock',
   labels: { singular: 'Image Grid', plural: 'Image Grids' },
   fields: [
     {

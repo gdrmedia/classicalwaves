@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const NumberedCardSliderBlock: Block = {
   slug: 'numbered-card-slider',
+  interfaceName: 'NumberedCardSliderBlock',
   labels: { singular: 'Numbered Card Slider', plural: 'Numbered Card Sliders' },
   fields: [
     { name: 'heading', type: 'text' },

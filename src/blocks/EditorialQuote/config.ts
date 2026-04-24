@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const EditorialQuoteBlock: Block = {
   slug: 'editorial-quote',
+  interfaceName: 'EditorialQuoteBlock',
   labels: { singular: 'Editorial Quote', plural: 'Editorial Quotes' },
   fields: [
     { name: 'quote', type: 'textarea', required: true },

@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const ContactFormBlock: Block = {
   slug: 'contact-form',
+  interfaceName: 'ContactFormBlock',
   labels: { singular: 'Contact Form', plural: 'Contact Forms' },
   fields: [
     { name: 'heading', type: 'text', defaultValue: 'Get in touch' },

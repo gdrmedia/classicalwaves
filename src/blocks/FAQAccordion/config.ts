@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const FAQAccordionBlock: Block = {
   slug: 'faq-accordion',
+  interfaceName: 'FAQAccordionBlock',
   labels: { singular: 'FAQ Accordion', plural: 'FAQ Accordions' },
   fields: [
     { name: 'heading', type: 'text' },

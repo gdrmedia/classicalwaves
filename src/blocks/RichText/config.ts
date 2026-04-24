@@ -5,6 +5,7 @@ import { blockFields } from '../shared.ts'
 
 export const RichTextBlock: Block = {
   slug: 'rich-text',
+  interfaceName: 'RichTextBlock',
   labels: { singular: 'Rich Text', plural: 'Rich Text Blocks' },
   fields: [
     { name: 'content', type: 'richText', editor: lexicalEditor(), required: true },

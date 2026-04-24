@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const SpacerDividerBlock: Block = {
   slug: 'spacer-divider',
+  interfaceName: 'SpacerDividerBlock',
   labels: { singular: 'Spacer / Divider', plural: 'Spacers & Dividers' },
   fields: [
     {

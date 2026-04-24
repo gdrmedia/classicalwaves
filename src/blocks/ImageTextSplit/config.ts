@@ -5,6 +5,7 @@ import { blockFields } from '../shared.ts'
 
 export const ImageTextSplitBlock: Block = {
   slug: 'image-text-split',
+  interfaceName: 'ImageTextSplitBlock',
   labels: { singular: 'Image + Text Split', plural: 'Image + Text Splits' },
   fields: [
     { name: 'image', type: 'upload', relationTo: 'media', required: true },

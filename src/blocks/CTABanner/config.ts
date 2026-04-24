@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const CTABannerBlock: Block = {
   slug: 'cta-banner',
+  interfaceName: 'CTABannerBlock',
   labels: { singular: 'CTA Banner', plural: 'CTA Banners' },
   fields: [
     { name: 'heading', type: 'text', required: true },

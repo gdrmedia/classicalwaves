@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const LookbookGalleryBlock: Block = {
   slug: 'lookbook-gallery',
+  interfaceName: 'LookbookGalleryBlock',
   labels: { singular: 'Lookbook Gallery', plural: 'Lookbook Galleries' },
   fields: [
     { name: 'heading', type: 'text' },

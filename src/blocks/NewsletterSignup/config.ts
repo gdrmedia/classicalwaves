@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const NewsletterSignupBlock: Block = {
   slug: 'newsletter-signup',
+  interfaceName: 'NewsletterSignupBlock',
   labels: { singular: 'Newsletter Signup', plural: 'Newsletter Signups' },
   fields: [
     { name: 'heading', type: 'text', defaultValue: 'Stay in the loop' },

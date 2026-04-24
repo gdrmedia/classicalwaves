@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const VideoEmbedBlock: Block = {
   slug: 'video-embed',
+  interfaceName: 'VideoEmbedBlock',
   labels: { singular: 'Video Embed', plural: 'Video Embeds' },
   fields: [
     {

@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const HeroHeaderBlock: Block = {
   slug: 'hero-header',
+  interfaceName: 'HeroHeaderBlock',
   labels: { singular: 'Hero Header', plural: 'Hero Headers' },
   fields: [
     { name: 'image', type: 'upload', relationTo: 'media', required: true },

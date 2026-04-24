@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const TestimonialSliderBlock: Block = {
   slug: 'testimonial-slider',
+  interfaceName: 'TestimonialSliderBlock',
   labels: { singular: 'Testimonial Slider', plural: 'Testimonial Sliders' },
   fields: [
     { name: 'heading', type: 'text' },

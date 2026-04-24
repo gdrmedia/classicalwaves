@@ -4,6 +4,7 @@ import { blockFields } from '../shared.ts'
 
 export const FeaturedProductsBlock: Block = {
   slug: 'featured-products',
+  interfaceName: 'FeaturedProductsBlock',
   labels: { singular: 'Featured Products', plural: 'Featured Products Blocks' },
   fields: [
     { name: 'heading', type: 'text', defaultValue: 'Shop the collection' },
