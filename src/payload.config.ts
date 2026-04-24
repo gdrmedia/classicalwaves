@@ -1,5 +1,6 @@
 import { buildConfig } from 'payload'
 import { Users } from './collections/Users.ts'
+import { Media } from './collections/Media.ts'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
@@ -24,7 +25,7 @@ export default buildConfig({
     },
     push: process.env.NODE_ENV === 'development',
   }),
-  collections: [Users],
+  collections: [Users, Media],
   globals: [],
   plugins: [
     vercelBlobStorage({
