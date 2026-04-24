@@ -1,7 +1,7 @@
 // src/lib/payload.server.ts
 import { getPayload } from '@/lib/getPayload'
 
-export async function getGlobal(slug: 'header' | 'footer' | 'settings', depth = 1) {
+export async function getGlobal<T extends 'header' | 'footer' | 'settings'>(slug: T, depth = 1) {
   const payload = await getPayload()
   return payload.findGlobal({ slug, depth })
 }
