@@ -4,6 +4,8 @@ import { draftMode } from 'next/headers'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { notFound } from 'next/navigation'
 import { getProductBySlug } from '@/lib/payload.server'
+import { getServerURL } from '@/lib/getServerURL'
+import { LivePreviewRefresh } from '@/components/LivePreviewRefresh'
 import type { Media, Product } from '@/payload-types'
 import type { Metadata } from 'next'
 import { ProductVariantSelector } from './VariantSelector'
@@ -31,9 +33,11 @@ export default async function ProductPage({ params }: Props) {
   ).filter(Boolean) ?? []
 
   const primaryImg = images[0]
+  const serverURL = isDraft ? await getServerURL() : null
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-16">
+      {isDraft && serverURL && <LivePreviewRefresh serverURL={serverURL} />}
       <div className="grid md:grid-cols-2 gap-12">
         {/* Images */}
         <div className="space-y-3">

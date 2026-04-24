@@ -1,5 +1,5 @@
 // src/components/blocks/BlockRenderer.tsx
-import type { Page } from '@/payload-types'
+import type { Page, PressMention } from '@/payload-types'
 import { HeroHeaderComponent } from '@/blocks/HeroHeader/Component'
 import { RichTextComponent } from '@/blocks/RichText/Component'
 import { ImageTextSplitComponent } from '@/blocks/ImageTextSplit/Component'
@@ -19,7 +19,12 @@ import { SpacerDividerComponent } from '@/blocks/SpacerDivider/Component'
 
 type Block = NonNullable<Page['blocks']>[number]
 
-export function BlockRenderer({ blocks }: { blocks: Block[] }) {
+type Props = {
+  blocks: Block[]
+  pressMentions?: PressMention[]
+}
+
+export function BlockRenderer({ blocks, pressMentions = [] }: Props) {
   return (
     <>
       {blocks.map((block, i) => {
@@ -31,7 +36,7 @@ export function BlockRenderer({ blocks }: { blocks: Block[] }) {
           case 'featured-products':  return <FeaturedProductsComponent key={i} {...block} />
           case 'lookbook-gallery':   return <LookbookGalleryComponent key={i} {...block} />
           case 'editorial-quote':    return <EditorialQuoteComponent key={i} {...block} />
-          case 'press-strip':        return <PressStripComponent key={i} {...block} />
+          case 'press-strip':        return <PressStripComponent key={i} {...block} mentions={pressMentions} />
           case 'testimonial-slider': return <TestimonialSliderComponent key={i} {...block} />
           case 'faq-accordion':      return <FAQAccordionComponent key={i} {...block} />
           case 'newsletter-signup':  return <NewsletterSignupComponent key={i} {...block} />

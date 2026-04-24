@@ -1,12 +1,11 @@
 // src/blocks/PressStrip/Component.tsx
-import type { PressStripBlock, Media } from '@/payload-types'
+import type { PressStripBlock, PressMention, Media } from '@/payload-types'
 import Image from 'next/image'
 import { BlockWrapper } from '@/components/blocks/BlockWrapper'
-import { getPressMentions } from '@/lib/payload.server'
 
-export async function PressStripComponent({ heading, anchor, padding, background }: PressStripBlock) {
-  const mentions = await getPressMentions()
+type Props = PressStripBlock & { mentions?: PressMention[] }
 
+export function PressStripComponent({ heading, anchor, padding, background, mentions = [] }: Props) {
   if (mentions.length === 0) return null
 
   return (

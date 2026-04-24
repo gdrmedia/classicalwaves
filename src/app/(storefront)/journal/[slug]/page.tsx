@@ -3,7 +3,9 @@ import Image from 'next/image'
 import { draftMode } from 'next/headers'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { BlockRenderer } from '@/components/blocks/BlockRenderer'
+import { LivePreviewRefresh } from '@/components/LivePreviewRefresh'
 import { getPost } from '@/lib/payload.server'
+import { getServerURL } from '@/lib/getServerURL'
 import { notFound } from 'next/navigation'
 import type { Media, Post } from '@/payload-types'
 import type { Metadata } from 'next'
@@ -25,9 +27,11 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound()
 
   const hero = typeof post.heroImage === 'object' ? (post.heroImage as Media) : null
+  const serverURL = isDraft ? await getServerURL() : null
 
   return (
     <article>
+      {isDraft && serverURL && <LivePreviewRefresh serverURL={serverURL} />}
       {hero?.url && (
         <div className="relative h-[50vh] bg-stone-100">
           <Image src={hero.url} alt={hero.alt ?? post.title} fill className="object-cover" priority sizes="100vw" />
