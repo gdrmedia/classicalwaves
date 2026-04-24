@@ -3,12 +3,7 @@
 import { RefreshRouteOnSave } from '@payloadcms/live-preview-react'
 import { useRouter } from 'next/navigation'
 
-export function LivePreviewListener() {
+export function LivePreviewListener({ serverURL }: { serverURL: string }) {
   const router = useRouter()
-  return (
-    <RefreshRouteOnSave
-      serverURL={process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'}
-      refresh={() => router.refresh()}
-    />
-  )
+  return <RefreshRouteOnSave serverURL={serverURL} refresh={() => router.refresh()} />
 }

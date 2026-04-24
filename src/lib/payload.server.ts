@@ -53,11 +53,12 @@ export async function getProducts() {
   return docs
 }
 
-export async function getProductBySlug(slug: string) {
+export async function getProductBySlug(slug: string, draft = false) {
   const payload = await getPayload()
   const { docs } = await payload.find({
     collection: 'products',
     where: { slug: { equals: slug } },
+    draft,
     depth: 2,
     limit: 1,
   })

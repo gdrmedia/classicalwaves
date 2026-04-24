@@ -2,8 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const NewsletterSubscribers: CollectionConfig = {
   slug: 'newsletter-subscribers',
+  labels: { singular: 'Newsletter Subscriber', plural: 'Newsletter' },
   admin: {
     useAsTitle: 'email',
+    group: 'THE WEBSITE',
     defaultColumns: ['email', 'source', 'subscribedAt', 'unsubscribedAt'],
   },
   access: {

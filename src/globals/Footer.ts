@@ -2,6 +2,7 @@ import type { GlobalConfig } from 'payload'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
+  admin: { group: 'ADMIN' },
   access: {
     read: () => true,
     update: ({ req: { user } }) => Boolean(user),

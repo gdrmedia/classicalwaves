@@ -2,6 +2,7 @@ import type { GlobalConfig } from 'payload'
 
 export const Settings: GlobalConfig = {
   slug: 'settings',
+  admin: { group: 'ADMIN' },
   access: {
     read: () => true,
     update: ({ req: { user } }) => Boolean(user),

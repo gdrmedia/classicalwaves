@@ -14,7 +14,11 @@ export const Posts: CollectionConfig = {
   slug: 'posts',
   admin: {
     useAsTitle: 'title',
+    group: 'THE WEBSITE',
     defaultColumns: ['title', 'slug', 'status', 'publishedAt'],
+    livePreview: {
+      url: ({ data }) => `/next/preview?path=/journal/${data?.slug ?? ''}`,
+    },
   },
   access: {
     read: ({ req: { user } }) => {

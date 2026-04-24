@@ -4,7 +4,11 @@ export const Products: CollectionConfig = {
   slug: 'products',
   admin: {
     useAsTitle: 'title',
+    group: 'THE SHOP',
     defaultColumns: ['title', 'basePrice', 'status', 'updatedAt'],
+    livePreview: {
+      url: ({ data }) => `/next/preview?path=/shop/${data?.slug ?? ''}`,
+    },
   },
   access: {
     read: ({ req: { user } }) => {

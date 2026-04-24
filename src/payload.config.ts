@@ -37,7 +37,11 @@ export default buildConfig({
     },
     push: process.env.NODE_ENV === 'development',
   }),
-  collections: [Users, Media, Products, Customers, Orders, Pages, Posts, PressMentions, NewsletterSubscribers, ContactSubmissions],
+  collections: [
+    Products, Customers, Orders,
+    Pages, Posts, Media, PressMentions, NewsletterSubscribers, ContactSubmissions,
+    Users,
+  ],
   globals: [Header, Footer, Settings],
   plugins: [
     vercelBlobStorage({

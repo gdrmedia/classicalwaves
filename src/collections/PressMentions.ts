@@ -2,8 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const PressMentions: CollectionConfig = {
   slug: 'press-mentions',
+  labels: { singular: 'Press Mention', plural: 'Press' },
   admin: {
     useAsTitle: 'publication',
+    group: 'THE WEBSITE',
     defaultColumns: ['publication', 'date', 'url'],
   },
   access: {

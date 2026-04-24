@@ -1,5 +1,6 @@
 // src/app/(storefront)/journal/[slug]/page.tsx
 import Image from 'next/image'
+import { draftMode } from 'next/headers'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { BlockRenderer } from '@/components/blocks/BlockRenderer'
 import { getPost } from '@/lib/payload.server'
@@ -7,10 +8,7 @@ import { notFound } from 'next/navigation'
 import type { Media, Post } from '@/payload-types'
 import type { Metadata } from 'next'
 
-type Props = {
-  params: Promise<{ slug: string }>
-  searchParams: Promise<{ preview?: string; secret?: string }>
-}
+type Props = { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
@@ -19,10 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: `${post.title} — Classical Waves`, description: post.excerpt ?? undefined }
 }
 
-export default async function PostPage({ params, searchParams }: Props) {
+export default async function PostPage({ params }: Props) {
   const { slug } = await params
-  const { preview, secret } = await searchParams
-  const isDraft = preview === 'true' && secret === process.env.PAYLOAD_PUBLIC_DRAFT_SECRET
+  const { isEnabled: isDraft } = await draftMode()
 
   const post = await getPost(slug, isDraft) as Post | null
   if (!post) notFound()

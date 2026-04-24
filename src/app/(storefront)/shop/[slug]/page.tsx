@@ -1,5 +1,6 @@
 // src/app/(storefront)/shop/[slug]/page.tsx
 import Image from 'next/image'
+import { draftMode } from 'next/headers'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { notFound } from 'next/navigation'
 import { getProductBySlug } from '@/lib/payload.server'
@@ -21,7 +22,8 @@ function formatPrice(cents: number): string {
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params
-  const product = await getProductBySlug(slug) as Product | null
+  const { isEnabled: isDraft } = await draftMode()
+  const product = await getProductBySlug(slug, isDraft) as Product | null
   if (!product) notFound()
 
   const images = product.images?.map((i) =>

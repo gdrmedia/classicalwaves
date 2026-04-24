@@ -20,11 +20,12 @@ export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     useAsTitle: 'title',
+    group: 'THE WEBSITE',
     defaultColumns: ['title', 'slug', 'status', 'updatedAt'],
     livePreview: {
       url: ({ data }) => {
         const slug = data?.slug === 'home' ? '' : (data?.slug ?? '')
-        return `${process.env.NEXT_PUBLIC_SITE_URL}/${slug}?preview=true&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
+        return `/next/preview?path=/${slug}`
       },
     },
   },
