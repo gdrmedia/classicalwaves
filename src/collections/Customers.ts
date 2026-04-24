@@ -4,6 +4,7 @@ export const Customers: CollectionConfig = {
   slug: 'customers',
   admin: {
     useAsTitle: 'email',
+    group: 'THE SHOP',
     defaultColumns: ['email', 'firstName', 'lastName', 'createdAt'],
   },
   auth: true,

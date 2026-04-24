@@ -4,6 +4,7 @@ export const Orders: CollectionConfig = {
   slug: 'orders',
   admin: {
     useAsTitle: 'orderNumber',
+    group: 'THE SHOP',
     defaultColumns: ['orderNumber', 'customer', 'totalCents', 'status', 'createdAt'],
   },
   access: {

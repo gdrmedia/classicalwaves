@@ -37,7 +37,11 @@ export default buildConfig({
     },
     push: process.env.NODE_ENV === 'development',
   }),
-  collections: [Users, Media, Products, Customers, Orders, Pages, Posts, PressMentions, NewsletterSubscribers, ContactSubmissions],
+  collections: [
+    Products, Customers, Orders,
+    Pages, Posts, Media, PressMentions, NewsletterSubscribers, ContactSubmissions,
+    Users,
+  ],
   globals: [Header, Footer, Settings],
   plugins: [
     vercelBlobStorage({
@@ -45,6 +49,7 @@ export default buildConfig({
         media: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN!,
+      clientUploads: true,
     }),
     seoPlugin({
       collections: ['pages', 'posts', 'products'],

@@ -433,6 +433,26 @@ export interface Page {
    */
   slug: string;
   status: 'draft' | 'published';
+  blocks?:
+    | (
+        | HeroHeaderBlock
+        | RichTextBlock
+        | ImageTextSplitBlock
+        | ImageGridBlock
+        | FeaturedProductsBlock
+        | LookbookGalleryBlock
+        | EditorialQuoteBlock
+        | PressStripBlock
+        | TestimonialSliderBlock
+        | FAQAccordionBlock
+        | NewsletterSignupBlock
+        | ContactFormBlock
+        | CTABannerBlock
+        | VideoEmbedBlock
+        | NumberedCardSliderBlock
+        | SpacerDividerBlock
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -444,6 +464,470 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroHeaderBlock".
+ */
+export interface HeroHeaderBlock {
+  image: number | Media;
+  heading: string;
+  subheading?: string | null;
+  ctaText?: string | null;
+  ctaUrl?: string | null;
+  overlayOpacity?: ('none' | 'light' | 'medium' | 'dark') | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero-header';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RichTextBlock".
+ */
+export interface RichTextBlock {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'rich-text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageTextSplitBlock".
+ */
+export interface ImageTextSplitBlock {
+  image: number | Media;
+  imageSide?: ('left' | 'right') | null;
+  heading: string;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  ctaText?: string | null;
+  ctaUrl?: string | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image-text-split';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGridBlock".
+ */
+export interface ImageGridBlock {
+  columns?: ('2' | '3' | '4') | null;
+  images?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image-grid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedProductsBlock".
+ */
+export interface FeaturedProductsBlock {
+  heading?: string | null;
+  /**
+   * Select 2–6 products to feature.
+   */
+  products?: (number | Product)[] | null;
+  layout?: ('grid' | 'carousel') | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featured-products';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LookbookGalleryBlock".
+ */
+export interface LookbookGalleryBlock {
+  heading?: string | null;
+  images?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lightbox?: boolean | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'lookbook-gallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EditorialQuoteBlock".
+ */
+export interface EditorialQuoteBlock {
+  quote: string;
+  attribution?: string | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'editorial-quote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PressStripBlock".
+ */
+export interface PressStripBlock {
+  heading?: string | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'press-strip';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialSliderBlock".
+ */
+export interface TestimonialSliderBlock {
+  heading?: string | null;
+  testimonials?:
+    | {
+        quote: string;
+        author: string;
+        location?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQAccordionBlock".
+ */
+export interface FAQAccordionBlock {
+  heading?: string | null;
+  items?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq-accordion';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsletterSignupBlock".
+ */
+export interface NewsletterSignupBlock {
+  heading?: string | null;
+  body?: string | null;
+  buttonText?: string | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'newsletter-signup';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactFormBlock".
+ */
+export interface ContactFormBlock {
+  heading?: string | null;
+  body?: string | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact-form';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABannerBlock".
+ */
+export interface CTABannerBlock {
+  heading: string;
+  body?: string | null;
+  ctaText: string;
+  ctaUrl: string;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta-banner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoEmbedBlock".
+ */
+export interface VideoEmbedBlock {
+  /**
+   * YouTube, Vimeo, or direct MP4 URL.
+   */
+  url: string;
+  caption?: string | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'video-embed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NumberedCardSliderBlock".
+ */
+export interface NumberedCardSliderBlock {
+  heading?: string | null;
+  cards?:
+    | {
+        /**
+         * e.g. "01"
+         */
+        number: string;
+        heading: string;
+        body: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'numbered-card-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SpacerDividerBlock".
+ */
+export interface SpacerDividerBlock {
+  type?: ('spacer' | 'divider') | null;
+  size?: ('sm' | 'md' | 'lg') | null;
+  /**
+   * Optional ID for in-page links, e.g. "about-us".
+   */
+  anchor?: string | null;
+  padding?: ('sm' | 'md' | 'lg') | null;
+  background?: {
+    type?: ('none' | 'color' | 'image') | null;
+    /**
+     * CSS color value, e.g. #f5f0eb
+     */
+    color?: string | null;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'spacer-divider';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -478,6 +962,23 @@ export interface Post {
         tag?: string | null;
         id?: string | null;
       }[]
+    | null;
+  /**
+   * Optional sections appended after the main content.
+   */
+  blocks?:
+    | (
+        | HeroHeaderBlock
+        | RichTextBlock
+        | ImageTextSplitBlock
+        | ImageGridBlock
+        | LookbookGalleryBlock
+        | EditorialQuoteBlock
+        | TestimonialSliderBlock
+        | CTABannerBlock
+        | VideoEmbedBlock
+        | SpacerDividerBlock
+      )[]
     | null;
   meta?: {
     title?: string | null;
@@ -857,6 +1358,26 @@ export interface PagesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   status?: T;
+  blocks?:
+    | T
+    | {
+        'hero-header'?: T | HeroHeaderBlockSelect<T>;
+        'rich-text'?: T | RichTextBlockSelect<T>;
+        'image-text-split'?: T | ImageTextSplitBlockSelect<T>;
+        'image-grid'?: T | ImageGridBlockSelect<T>;
+        'featured-products'?: T | FeaturedProductsBlockSelect<T>;
+        'lookbook-gallery'?: T | LookbookGalleryBlockSelect<T>;
+        'editorial-quote'?: T | EditorialQuoteBlockSelect<T>;
+        'press-strip'?: T | PressStripBlockSelect<T>;
+        'testimonial-slider'?: T | TestimonialSliderBlockSelect<T>;
+        'faq-accordion'?: T | FAQAccordionBlockSelect<T>;
+        'newsletter-signup'?: T | NewsletterSignupBlockSelect<T>;
+        'contact-form'?: T | ContactFormBlockSelect<T>;
+        'cta-banner'?: T | CTABannerBlockSelect<T>;
+        'video-embed'?: T | VideoEmbedBlockSelect<T>;
+        'numbered-card-slider'?: T | NumberedCardSliderBlockSelect<T>;
+        'spacer-divider'?: T | SpacerDividerBlockSelect<T>;
+      };
   meta?:
     | T
     | {
@@ -867,6 +1388,353 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroHeaderBlock_select".
+ */
+export interface HeroHeaderBlockSelect<T extends boolean = true> {
+  image?: T;
+  heading?: T;
+  subheading?: T;
+  ctaText?: T;
+  ctaUrl?: T;
+  overlayOpacity?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RichTextBlock_select".
+ */
+export interface RichTextBlockSelect<T extends boolean = true> {
+  content?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageTextSplitBlock_select".
+ */
+export interface ImageTextSplitBlockSelect<T extends boolean = true> {
+  image?: T;
+  imageSide?: T;
+  heading?: T;
+  body?: T;
+  ctaText?: T;
+  ctaUrl?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGridBlock_select".
+ */
+export interface ImageGridBlockSelect<T extends boolean = true> {
+  columns?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedProductsBlock_select".
+ */
+export interface FeaturedProductsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  products?: T;
+  layout?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LookbookGalleryBlock_select".
+ */
+export interface LookbookGalleryBlockSelect<T extends boolean = true> {
+  heading?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  lightbox?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EditorialQuoteBlock_select".
+ */
+export interface EditorialQuoteBlockSelect<T extends boolean = true> {
+  quote?: T;
+  attribution?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PressStripBlock_select".
+ */
+export interface PressStripBlockSelect<T extends boolean = true> {
+  heading?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialSliderBlock_select".
+ */
+export interface TestimonialSliderBlockSelect<T extends boolean = true> {
+  heading?: T;
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        author?: T;
+        location?: T;
+        id?: T;
+      };
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQAccordionBlock_select".
+ */
+export interface FAQAccordionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  items?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsletterSignupBlock_select".
+ */
+export interface NewsletterSignupBlockSelect<T extends boolean = true> {
+  heading?: T;
+  body?: T;
+  buttonText?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactFormBlock_select".
+ */
+export interface ContactFormBlockSelect<T extends boolean = true> {
+  heading?: T;
+  body?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABannerBlock_select".
+ */
+export interface CTABannerBlockSelect<T extends boolean = true> {
+  heading?: T;
+  body?: T;
+  ctaText?: T;
+  ctaUrl?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoEmbedBlock_select".
+ */
+export interface VideoEmbedBlockSelect<T extends boolean = true> {
+  url?: T;
+  caption?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NumberedCardSliderBlock_select".
+ */
+export interface NumberedCardSliderBlockSelect<T extends boolean = true> {
+  heading?: T;
+  cards?:
+    | T
+    | {
+        number?: T;
+        heading?: T;
+        body?: T;
+        id?: T;
+      };
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SpacerDividerBlock_select".
+ */
+export interface SpacerDividerBlockSelect<T extends boolean = true> {
+  type?: T;
+  size?: T;
+  anchor?: T;
+  padding?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -886,6 +1754,20 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         tag?: T;
         id?: T;
+      };
+  blocks?:
+    | T
+    | {
+        'hero-header'?: T | HeroHeaderBlockSelect<T>;
+        'rich-text'?: T | RichTextBlockSelect<T>;
+        'image-text-split'?: T | ImageTextSplitBlockSelect<T>;
+        'image-grid'?: T | ImageGridBlockSelect<T>;
+        'lookbook-gallery'?: T | LookbookGalleryBlockSelect<T>;
+        'editorial-quote'?: T | EditorialQuoteBlockSelect<T>;
+        'testimonial-slider'?: T | TestimonialSliderBlockSelect<T>;
+        'cta-banner'?: T | CTABannerBlockSelect<T>;
+        'video-embed'?: T | VideoEmbedBlockSelect<T>;
+        'spacer-divider'?: T | SpacerDividerBlockSelect<T>;
       };
   meta?:
     | T
