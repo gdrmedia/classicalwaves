@@ -9,9 +9,11 @@
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types --disable-transpile",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap --disable-transpile",
-    "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
-    "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
-    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx src/scripts/seed.ts"
+    "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate --disable-transpile",
+    "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create --disable-transpile",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx --require ./src/scripts/patch-next-env.cjs src/scripts/seed.ts",
+    "test": "cross-env NODE_OPTIONS=--no-deprecation vitest run",
+    "test:watch": "cross-env NODE_OPTIONS=--no-deprecation vitest"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.84.1",
@@ -33,9 +35,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^4.1.5",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.5"
   }
 }
